@@ -1,25 +1,19 @@
-# Projeto React Native com Backend Express Integrado
+# Atividade React Native com Backend Express Integrado
 
-Este projeto é uma aplicação que utiliza **React Native** no frontend e **Express** no backend, integrados através de requisições HTTP RESTful utilizando **Axios**. O frontend e o backend estão em um único repositório, facilitando o desenvolvimento e integração da aplicação.
+Esta atividade é uma aplicação que utiliza **React Native** no frontend e **Express** no backend, integrados através de requisições HTTP RESTful utilizando **Axios**. O frontend e o backend estão em um único repositório, facilitando o desenvolvimento e integração da aplicação.
 
-## Estrutura do Projeto
+## Estrutura da Atividade
 
-A estrutura do projeto é dividida em duas principais pastas:
+A estrutura da atividade é dividida em duas principais pastas:
 
-- **`/API`**: Contém o backend Express com as rotas, controladores e lógica de negócios.
+- **`/API`**: Contém o backend Express com as rotas CRUD.
 - **`/`**: Contém o frontend React Native que faz as requisições para o backend.
 
 ## Funcionalidade da Integração
 
-O frontend (React Native) interage com o backend (Express) utilizando o Axios, que é configurado para fazer requisições HTTP RESTful. As principais operações do projeto, como login, cadastro e manipulação de projetos e tarefas, são realizadas através dessas requisições.
+O frontend (React Native) interage com o backend (Express) utilizando o Axios, que é configurado para fazer requisições HTTP RESTful.
 
-### Exemplos de integração:
-
-- O React Native faz uma requisição `POST` para o backend para realizar o login do usuário.
-- O backend, por sua vez, responde com um token JWT, que é armazenado no cliente para autenticação em requisições subsequentes.
-- O React Native pode então fazer requisições `GET`, `POST`, `PUT`, `DELETE` para o backend para gerenciar projetos e tarefas.
-
-## Rodando o Projeto
+## Rodando o App
 
 ### Backend
 
@@ -65,4 +59,4 @@ Isso iniciará o aplicativo React Native na versão web.
 
 ## Conclusão
 
-Este projeto oferece uma integração simples entre React Native no frontend e Express no backend, com Axios para realizar as requisições HTTP RESTful. O backend pode ser executado localmente utilizando `node index.js` e o frontend pode ser rodado utilizando `npm run web`.
+Este app oferece uma integração simples entre React Native no frontend e Express no backend, com Axios para realizar as requisições HTTP RESTful. O backend pode ser executado localmente utilizando `node index.js` e o frontend pode ser rodado utilizando `npm run web`.
