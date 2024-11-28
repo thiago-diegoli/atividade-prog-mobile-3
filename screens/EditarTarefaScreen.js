@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -10,11 +10,10 @@ import {
 import axios from "axios";
 
 const EditarTarefaScreen = ({ route, navigation }) => {
-  const tarefaId = route.params.taskId; // Pegando o ID da tarefa da rota de navegação
+  const tarefaId = route.params.taskId;
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("pendente");
 
-  // Função para atualizar a tarefa no backend
   const handleEditTask = async () => {
     if (!description) {
       alert("A descrição é obrigatória.");

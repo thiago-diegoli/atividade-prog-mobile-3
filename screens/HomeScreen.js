@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Button,
-  Picker, // Importando o Picker para selecionar o filtro
+  Picker,
 } from "react-native";
 import axios from "axios";
 import { useFocusEffect } from "@react-navigation/native";
@@ -14,69 +14,62 @@ import { useFocusEffect } from "@react-navigation/native";
 const HomeScreen = ({ navigation }) => {
   const [tasks, setTasks] = useState([]);
   const [filteredTasks, setFilteredTasks] = useState([]);
-  const [filterStatus, setFilterStatus] = useState("todos"); // Filtro inicial
+  const [filterStatus, setFilterStatus] = useState("todos");
 
   const BASE_URL = "http://localhost:3000/tarefas";
 
-  // Função para buscar as tarefas do backend
   const fetchTasks = async () => {
     try {
       const response = await axios.get(BASE_URL);
-      setTasks(response.data); // Atualiza a lista de tarefas
-      setFilteredTasks(response.data); // Inicialmente mostra todas as tarefas
+      setTasks(response.data);
+      setFilteredTasks(response.data);
     } catch (error) {
       console.error("Erro ao buscar tarefas:", error);
     }
   };
 
-  // Função para deletar uma tarefa
   const deleteTask = async (taskId) => {
     try {
       await axios.delete(`${BASE_URL}/${taskId}`);
       alert("Tarefa deletada!");
-      fetchTasks(); // Atualiza a lista após a deleção
+      fetchTasks();
     } catch (error) {
       console.error("Erro ao deletar tarefa:", error);
       alert("Não foi possível deletar a tarefa.");
     }
   };
 
-  // Função para editar uma tarefa
   const editTask = (taskId) => {
     navigation.navigate("EditarTarefa", { taskId });
   };
 
-  // Função para adicionar uma nova tarefa
   const addTask = () => {
     navigation.navigate("AdicionarTarefa");
   };
 
-  // Usar o useFocusEffect para garantir que as tarefas sejam carregadas sempre que a tela for focada
   useFocusEffect(
     React.useCallback(() => {
       fetchTasks();
     }, [])
   );
 
-  // Função para filtrar as tarefas com base no status selecionado
   const filterTasks = (status) => {
-    setFilterStatus(status); // Atualiza o status do filtro
+    setFilterStatus(status);
     if (status === "todos") {
-      setFilteredTasks(tasks); // Exibe todas as tarefas
+      setFilteredTasks(tasks);
     } else {
-      setFilteredTasks(tasks.filter((task) => task.status === status)); // Filtra por status
+      setFilteredTasks(tasks.filter((task) => task.status === status));
     }
   };
 
-  // Função para renderizar o estilo da bolinha de status
   const renderStatusDot = (status) => {
     switch (status) {
       case "completa":
-        return { backgroundColor: "green", width: 12, height: 12 }; // Bolinha verde
+        return { backgroundColor: "green", width: 12, height: 12 };
       case "pendente":
-        return { backgroundColor: "yellow", width: 12, height: 12 }; // Bolinha amarela
+        return { backgroundColor: "yellow", width: 12, height: 12 };
       default:
-        return { backgroundColor: "gray", width: 12, height: 12 }; // Bolinha cinza
+        return { backgroundColor: "gray", width: 12, height: 12 };
     }
   };
 
@@ -105,7 +98,6 @@ const HomeScreen = ({ navigation }) => {
     <View style={styles.container}>
       <Button title="Adicionar Tarefa" onPress={addTask} />
 
-      {/* Seletor de filtro */}
       <View style={styles.filterContainer}>
         <Text style={styles.filterLabel}>Filtrar por Status:</Text>
         <Picker
@@ -119,7 +111,6 @@ const HomeScreen = ({ navigation }) => {
         </Picker>
       </View>
 
-      {/* Lista de tarefas filtradas */}
       <FlatList
         data={filteredTasks}
         keyExtractor={(item) => item.id.toString()}
@@ -164,8 +155,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   statusDot: {
-    borderRadius: 50, // Para a bolinha ser redonda
-    marginRight: 10, // Espaço entre a bolinha e o texto
+    borderRadius: 50,
+    marginRight: 10,
   },
   taskText: {
     fontSize: 16,

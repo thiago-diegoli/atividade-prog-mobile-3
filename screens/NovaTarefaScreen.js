@@ -20,7 +20,6 @@ const NovaTelaScreen = ({ navigation }) => {
     }
 
     try {
-      // Faça o POST da nova tarefa
       const response = await axios.post("http://localhost:3000/tarefas", {
         description,
         status,
@@ -28,9 +27,9 @@ const NovaTelaScreen = ({ navigation }) => {
 
       if (response.status === 201) {
         alert("Sucesso", "Tarefa cadastrada com sucesso!");
-        setDescription(""); // Limpa o campo de descrição
-        setStatus("pendente"); // Reseta o status
-        navigation.goBack(); // Retorna à tela anterior após adicionar a tarefa
+        setDescription("");
+        setStatus("pendente");
+        navigation.goBack();
       }
     } catch (error) {
       alert("Erro", "Ocorreu um erro ao cadastrar a tarefa.");
